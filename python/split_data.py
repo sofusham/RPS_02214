@@ -6,7 +6,7 @@ import shutil
 base_dir = "python/data/"
 classes = ["rock", "paper", "scissors"]
 
-train_ratio = 0.8  # 80% train, 20% test
+train_ratio = 0.6  # 80% train, 20% test
 
 for cls in classes:
     src = os.path.join(base_dir, cls)
@@ -20,13 +20,13 @@ for cls in classes:
     test_files = images[split_idx:]
     
     # Create directories
-    for split in ["train", "test"]:
+    for split in ["validation", "test"]:
         os.makedirs(os.path.join(base_dir, split, cls), exist_ok=True)
     
     # Move files
     for f in train_files:
         shutil.copy(os.path.join(src, f),
-                    os.path.join(base_dir, "train", cls, f))
+                    os.path.join(base_dir, "validation", cls, f))
     
     for f in test_files:
         shutil.copy(os.path.join(src, f),
