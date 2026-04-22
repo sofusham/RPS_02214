@@ -1,0 +1,12 @@
+{
+    "terminal.integrated.profiles.windows": {
+      "ESP-IDF (cmd)": {
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "args": ["/k", "${config:idf.espIdfPathWin}/export.bat"],
+        "env": {
+          "IDF_PYTHON_ENV_PATH": "${config:idf.toolsPathWin}/python_env/idf5.5_py3.11_env"
+        }
+      }
+    },
+    "terminal.integrated.defaultProfile.windows": "ESP-IDF (cmd)"
+}
