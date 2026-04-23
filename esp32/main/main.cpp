@@ -10,10 +10,11 @@
 
 // Project includes
 #include "camera.h"
+#include "serial.h"
 
 // Static constants and variables
 static constexpr size_t CHUNK_SIZE = 256;
-static const char* FRAME_PREAMBLE = "\n===FRAME===\n";
+// static const char* FRAME_PREAMBLE = "\n===FRAME===\n";
 static uint8_t image_buffer[FRAME_W * FRAME_H * FRAME_C];
 
 void setup()
@@ -52,28 +53,40 @@ void setup()
 
 void loop(void)
 {
-    usb_serial_jtag_write_bytes("1", 1, portMAX_DELAY); /*send char via serial to computer*/
+    // usb_serial_jtag_write_bytes("1", 1, portMAX_DELAY); /*send char via serial to computer*/
 
     // Capture frame into tensor
-    if (camera_capture_frame(image_buffer)) {
-        // Send preamble
-        usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
+    camera_capture_frame(image_buffer);
 
-        // Send image over USB console
-        // Note that usb_serial_jtag_write_bytes() may fail if writing too many bytes at once, so it's necessary to
-        // send in chunks.
-        size_t frame_size = sizeof(image_buffer);
-        for (size_t offset = 0; offset < frame_size;) {
-            size_t to_write = offset + CHUNK_SIZE < frame_size ? CHUNK_SIZE : frame_size - offset;
-            int written = usb_serial_jtag_write_bytes(image_buffer + offset, to_write, pdMS_TO_TICKS(1000));
-            if (written < to_write) {
-                vTaskDelay(1);
-            }
-            if (written > 0) {
-                offset += written;
-            }
-        }
-    }
+    //before preprocessing: 
+    // printf("Image info:\n");
+    // printf("Width: %d\n", FRAME_W);
+    // printf("Height: %d\n", FRAME_H);
+    // printf("Number of bytes to hold the pixel values (RGB565): %d\n", FRAME_C);
+    int i = 3; 
+    // serial_printf("Captured frame: %dx%d, %d bytes\n", FRAME_W, FRAME_H, FRAME_C);
+    serial_printf("this is a value: %d\n", i);
+
+
+    // if (camera_capture_frame(image_buffer)) {
+    //     // Send preamble
+    //     usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
+
+    //     // Send image over USB console
+    //     // Note that usb_serial_jtag_write_bytes() may fail if writing too many bytes at once, so it's necessary to
+    //     // send in chunks.
+    //     size_t frame_size = sizeof(image_buffer);
+    //     for (size_t offset = 0; offset < frame_size;) {
+    //         size_t to_write = offset + CHUNK_SIZE < frame_size ? CHUNK_SIZE : frame_size - offset;
+    //         int written = usb_serial_jtag_write_bytes(image_buffer + offset, to_write, pdMS_TO_TICKS(1000));
+    //         if (written < to_write) {
+    //             vTaskDelay(1);
+    //         }
+    //         if (written > 0) {
+    //             offset += written;
+    //         }
+    //     }
+    // }
 
     // Wait ~1 second
     vTaskDelay(pdMS_TO_TICKS(1000));

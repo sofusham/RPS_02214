@@ -43,19 +43,16 @@ def capture_and_display_loop(port: str):#, output_path: str):
     
     serial_port.reset_input_buffer()  # Clear old data
 
-    while True: 
-        c = serial_port.read(1); 
-        
-        if not c:
-            print("Serial read timeout, retrying...")
-            continue
-        if c == b'1':
-            print("Received '1' from serial port, starting main loop.")
-            break
+    while True:
+        line = serial_port.readline()  # read until '\n'
+
+        if line:
+            print("Received:", line.decode(errors='ignore').strip())
     
        
         
     # Main loop
+    
     # last_surface = None
     running = True
     try:
