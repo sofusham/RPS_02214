@@ -39,10 +39,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
 
 endif()
 

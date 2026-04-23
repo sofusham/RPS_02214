@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

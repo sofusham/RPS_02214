@@ -39,16 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/mspi_timing_tuning/port/esp32s3/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/mspi_timing_tuning/port/esp32s3/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
 endif()
 

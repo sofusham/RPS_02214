@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\Users\miesi\OneDrive - Danmarks Tekniske Universitet\DTU\MSc\4. sem\02214 Hardware Software codesign\Lab\RPS_02214\esp32\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Users\miesi\02214_lab\RPS_02214\esp32\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

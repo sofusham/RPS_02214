@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/bootloader/bootloader.elf
+file C:/Users/miesi/02214_lab/RPS_02214/esp32/build/bootloader/bootloader.elf

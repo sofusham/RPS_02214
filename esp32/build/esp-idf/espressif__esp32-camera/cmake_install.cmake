@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/managed_components/espressif__esp32-camera
+# Install script for directory: C:/Users/miesi/02214_lab/RPS_02214/esp32/managed_components/espressif__esp32-camera
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/miesi/OneDrive - Danmarks Tekniske Universitet/DTU/MSc/4. sem/02214 Hardware Software codesign/Lab/RPS_02214/esp32/build/esp-idf/esp_system/port/cmake_install.cmake")
+  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/esp_system/port/cmake_install.cmake")
 endif()
 
