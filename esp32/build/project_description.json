@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "camera",
-    "project_version":    "5818d7e-dirty",
+    "project_version":    "b36b9f3-dirty",
     "project_path":       "C:/Users/miesi/02214_lab/RPS_02214/esp32",
     "idf_path":           "C:/Users/miesi/esp/esp-idf",
     "build_dir":          "C:/Users/miesi/02214_lab/RPS_02214/esp32/build",

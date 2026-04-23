@@ -52,6 +52,8 @@ void setup()
 
 void loop(void)
 {
+    usb_serial_jtag_write_bytes("1", 1, portMAX_DELAY); /*send char via serial to computer*/
+
     // Capture frame into tensor
     if (camera_capture_frame(image_buffer)) {
         // Send preamble
