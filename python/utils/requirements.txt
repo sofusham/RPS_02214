@@ -1,0 +1,21 @@
+absl-py
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0
+torchvision==0.26.0
+torchaudio==2.11.0
+torchao
+--pre
+ai-edge-litert-nightly[model-utils]
+ai-edge-quantizer-nightly
+litert-converter>=0.0.0.dev0
+jax[cpu]
+scipy
+numpy
+tabulate
+safetensors
+kagglehub
+transformers
+multipledispatch
+jaxtyping
+fire
+rich
