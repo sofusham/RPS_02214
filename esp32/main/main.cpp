@@ -53,21 +53,7 @@ void setup()
 
 void loop(void)
 {
-    // usb_serial_jtag_write_bytes("1", 1, portMAX_DELAY); /*send char via serial to computer*/
-
     // Capture frame into tensor
-    camera_capture_frame(image_buffer);
-
-    //before preprocessing: 
-    // printf("Image info:\n");
-    // printf("Width: %d\n", FRAME_W);
-    // printf("Height: %d\n", FRAME_H);
-    // printf("Number of bytes to hold the pixel values (RGB565): %d\n", FRAME_C);
-    int i = 3; 
-    // serial_printf("Captured frame: %dx%d, %d bytes\n", FRAME_W, FRAME_H, FRAME_C);
-    serial_printf("this is a value: %d\n", i);
-
-
     // if (camera_capture_frame(image_buffer)) {
     //     // Send preamble
     //     usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
@@ -87,6 +73,19 @@ void loop(void)
     //         }
     //     }
     // }
+
+    camera_capture_frame(image_buffer);
+
+    //before preprocessing: 
+    serial_printf("Image before preprocessing: \n");
+    serial_printf("Width: %d\n", FRAME_W);
+    serial_printf("Height: %d\n", FRAME_H);
+    serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
+    //Before preprocessing, the images are in RGB565 format, and with the dimensions of 320x240. 
+    //After preprocessing the images should be greyscale and with the dimensions of 64x64. 
+
+
+
 
     // Wait ~1 second
     vTaskDelay(pdMS_TO_TICKS(1000));

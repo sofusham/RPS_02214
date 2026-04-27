@@ -42,12 +42,6 @@ def capture_and_display_loop(port: str):#, output_path: str):
     
     
     serial_port.reset_input_buffer()  # Clear old data
-
-    while True:
-        line = serial_port.readline()  # read until '\n'
-
-        if line:
-            print("Received:", line.decode(errors='ignore').strip())
     
        
         
@@ -68,18 +62,23 @@ def capture_and_display_loop(port: str):#, output_path: str):
                     #     class_index = event.key - pygame.K_0
                     #     _save_frame(output_path, last_surface, class_index)
 
-            # # Capture frame from serial port
+            # Capture frame from serial port
             # surface = _capture_frame(serial_port)
             # if surface is None:
             #     continue
 
-            # # Remember last surface for saving
+            # Remember last surface for saving
             # last_surface = surface.copy()
 
-            # # Blit and present the frame
+            # Blit and present the frame
             # screen.blit(surface, (0, 0))
             # pygame.display.flip()
-            print("Python is running")
+            
+            esp32_msg = serial_port.readline()
+            if esp32_msg:
+                print("Received:", esp32_msg.decode(errors='ignore').strip())
+            
+
             time.sleep(1)
     finally:
         # Release serial port and pygame resources
@@ -87,36 +86,46 @@ def capture_and_display_loop(port: str):#, output_path: str):
         #pygame.quit()
 
 
-# def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
-#     # Wait for preamble
-#     chunk = serial_port.read_until(FRAME_PREAMBLE)
-#     if not chunk.endswith(FRAME_PREAMBLE):
-#         print("Preamble timeout, retrying...")
-#         return None
+def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
+    # Wait for preamble
+    chunk = serial_port.read_until(FRAME_PREAMBLE)
+    if not chunk.endswith(FRAME_PREAMBLE):
+        print("Preamble timeout, retrying...")
+        return None
 
-#     # Read a full frame after the preamble
-#     frame_rgb565 = serial_port.read(WIDTH * HEIGHT * 2)
-#     if len(frame_rgb565) != WIDTH * HEIGHT * 2:
-#         print(f"Incomplete frame received ({len(frame_rgb565)} bytes), skipping...")
-#         return None
+    # Read a full frame after the preamble
+    frame_rgb565 = serial_port.read(WIDTH * HEIGHT * 1) #2)
+    if len(frame_rgb565) != WIDTH * HEIGHT * 1: #2:
+        print(f"Incomplete frame received ({len(frame_rgb565)} bytes), skipping...")
+        return None
 
-#     # Convert from RGB565 to RGB888
-#     frame_rgb = bytearray(WIDTH * HEIGHT * 3)
-#     for y in range(HEIGHT):
-#         for x in range(WIDTH):
-#             src_index = (y * WIDTH + x) * 2
-#             dst_index = (y * WIDTH + x) * 3
-#             byte1 = frame_rgb565[src_index]
-#             byte2 = frame_rgb565[src_index + 1]
-#             r8 = byte1 & 0xF8
-#             g8 = ((byte1 & 0x07) << 5) | ((byte2 & 0xE0) >> 3)
-#             b8 = (byte2 & 0x1F) << 3
-#             frame_rgb[dst_index] = r8
-#             frame_rgb[dst_index + 1] = g8
-#             frame_rgb[dst_index + 2] = b8
+    # # Convert from RGB565 to RGB888
+    # frame_rgb = bytearray(WIDTH * HEIGHT * 3)
+    # for y in range(HEIGHT):
+    #     for x in range(WIDTH):
+    #         src_index = (y * WIDTH + x) * 2
+    #         dst_index = (y * WIDTH + x) * 3
+    #         byte1 = frame_rgb565[src_index]
+    #         byte2 = frame_rgb565[src_index + 1]
+    #         r8 = byte1 & 0xF8
+    #         g8 = ((byte1 & 0x07) << 5) | ((byte2 & 0xE0) >> 3)
+    #         b8 = (byte2 & 0x1F) << 3
+    #         frame_rgb[dst_index] = r8
+    #         frame_rgb[dst_index + 1] = g8
+    #         frame_rgb[dst_index + 2] = b8
+    
 
-#     # Create and return pygame surface
-#     return pygame.image.frombuffer(frame_rgb, (WIDTH, HEIGHT), "RGB")
+
+    # Create and return pygame surface
+    #return pygame.image.frombuffer(frame_rgb565, (WIDTH, HEIGHT), "P")
+
+    surface = pygame.image.frombuffer(frame_rgb565, (WIDTH, HEIGHT), "P")
+
+    # Create grayscale palette (0→black, 255→white)
+    palette = [(i, i, i) for i in range(256)]
+    surface.set_palette(palette)
+
+    return surface
 
 
 # def _save_frame(output_path: str, surface: pygame.Surface, class_index: int):
