@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 
 # Configuration constants
-#DEFAULT_OUTPUT_PATH = "../data/"        # Path to save captured images
+DEFAULT_OUTPUT_PATH = "../data/"        # Path to save captured images
 DEFAULT_PORT = "COM3"                   # Default serial port; can be overridden with CLI argument --port
 BAUD_RATE = 921600                      # Will be ignored, but we need to provide a value
 SERIAL_TIMEOUT = 2.0                    # Serial read timeout in seconds
@@ -16,7 +16,7 @@ HEIGHT = 240                            # Frame height in pixels - must match FR
 FRAME_PREAMBLE = b"===FRAME===\n"       # Preamble sequence indicating start of frame - must match suffix of FRAME_PREAMBLE in firmware (main.cpp)
 
 
-def capture_and_display_loop(port: str):#, output_path: str):
+def capture_and_display_loop(port: str, output_path: str):
     # Open serial port
     print(f"Opening serial port {port}... ", end="")
     try:
@@ -29,7 +29,7 @@ def capture_and_display_loop(port: str):#, output_path: str):
     # # Initialize pygame and open window
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    # pygame.display.set_caption("Serial Camera Viewer")
+    pygame.display.set_caption("Serial Camera Viewer")
 
     # Print instructions
     print("Connection established.")
@@ -47,7 +47,7 @@ def capture_and_display_loop(port: str):#, output_path: str):
         
     # Main loop
     
-    # last_surface = None
+    last_surface = None
     running = True
     try:
         while running:
@@ -58,28 +58,28 @@ def capture_and_display_loop(port: str):#, output_path: str):
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_q, pygame.K_ESCAPE):
                         running = False
-                    # elif pygame.K_0 <= event.key <= pygame.K_9 and last_surface is not None:
-                    #     class_index = event.key - pygame.K_0
-                    #     _save_frame(output_path, last_surface, class_index)
+                    elif pygame.K_0 <= event.key <= pygame.K_9 and last_surface is not None:
+                        class_index = event.key - pygame.K_0
+                        _save_frame(output_path, last_surface, class_index)
 
             # Capture frame from serial port
-            # surface = _capture_frame(serial_port)
-            # if surface is None:
-            #     continue
+            surface = _capture_frame(serial_port)
+            if surface is None:
+                continue
 
             # Remember last surface for saving
-            # last_surface = surface.copy()
+            last_surface = surface.copy()
 
             # Blit and present the frame
-            # screen.blit(surface, (0, 0))
-            # pygame.display.flip()
+            screen.blit(surface, (0, 0))
+            pygame.display.flip()
             
-            esp32_msg = serial_port.readline()
-            if esp32_msg:
-                print("Received:", esp32_msg.decode(errors='ignore').strip())
+            # esp32_msg = serial_port.readline()
+            # if esp32_msg:
+            #     print("Received:", esp32_msg.decode(errors='ignore').strip())
             
 
-            time.sleep(1)
+            time.sleep(0.001)
     finally:
         # Release serial port and pygame resources
         serial_port.close()
@@ -95,6 +95,7 @@ def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
 
     # Read a full frame after the preamble
     frame_rgb565 = serial_port.read(WIDTH * HEIGHT * 1) #2)
+    print(len(frame_rgb565))
     if len(frame_rgb565) != WIDTH * HEIGHT * 1: #2:
         print(f"Incomplete frame received ({len(frame_rgb565)} bytes), skipping...")
         return None
@@ -128,29 +129,29 @@ def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
     return surface
 
 
-# def _save_frame(output_path: str, surface: pygame.Surface, class_index: int):
-#     # Create directory if needed
-#     directory = os.path.join(output_path, str(class_index))
-#     os.makedirs(directory, exist_ok=True)
+def _save_frame(output_path: str, surface: pygame.Surface, class_index: int):
+    # Create directory if needed
+    directory = os.path.join(output_path, str(class_index))
+    os.makedirs(directory, exist_ok=True)
 
-#     # Generate filename
-#     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-#     filename = f"image_{timestamp}.png"
-#     path = os.path.join(directory, filename)
+    # Generate filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"image_{timestamp}.png"
+    path = os.path.join(directory, filename)
 
-#     # Do save image
-#     pygame.image.save(surface, path)
-#     print(f"Saved image to {path}.")
+    # Do save image
+    pygame.image.save(surface, path)
+    print(f"Saved image to {path}.")
 
 
 if __name__ == "__main__":
     # Define CLI arguments
     parser = argparse.ArgumentParser(description="Serial RGB frame viewer")
     parser.add_argument("--port", default=DEFAULT_PORT, help=f"Serial port (default: {DEFAULT_PORT})")
-    #parser.add_argument("--output-path", default=DEFAULT_OUTPUT_PATH, help=f"Output directory (default: {DEFAULT_OUTPUT_PATH})")
+    parser.add_argument("--output-path", default=DEFAULT_OUTPUT_PATH, help=f"Output directory (default: {DEFAULT_OUTPUT_PATH})")
 
     # Parse arguments
     args = parser.parse_args()
 
     # Run capture and display loop
-    capture_and_display_loop(args.port) #, args.output_path)
+    capture_and_display_loop(args.port, args.output_path)
