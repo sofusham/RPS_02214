@@ -48,7 +48,7 @@ static camera_config_t get_camera_config()
     config.grab_mode   = CAMERA_GRAB_LATEST;
 
     // Pixel format: RGB565 is efficient to convert to RGB888
-    config.pixel_format = PIXFORMAT_RGB565;
+    config.pixel_format = PIXFORMAT_GRAYSCALE; 
 
     // Resolution: QVGA (320x240)
     config.frame_size = FRAMESIZE_QVGA;
@@ -74,7 +74,7 @@ bool camera_init(void)
         return false;
     }
 
-    ESP_LOGI(TAG, "Camera initialized: %dx%d RGB565.", FRAME_W, FRAME_H);
+    ESP_LOGI(TAG, "Camera initialized: %dx%d grayscale.", FRAME_W, FRAME_H);
 
     return true;
 }
@@ -94,7 +94,7 @@ bool camera_capture_frame(uint8_t *image_buffer)
     }
 
     // Verify frame size and format
-    if (fb->width != FRAME_W || fb->height != FRAME_H || fb->format != PIXFORMAT_RGB565) {
+    if (fb->width != FRAME_W || fb->height != FRAME_H || fb->format != PIXFORMAT_GRAYSCALE) {
         ESP_LOGE(TAG, "Unexpected frame format: %dx%d, format %d.", fb->width, fb->height, fb->format);
         esp_camera_fb_return(fb);
         return false;
