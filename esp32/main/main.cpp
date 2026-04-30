@@ -12,6 +12,7 @@
 #include "camera.h"
 #include "serial.h"
 #include "preprocess.h"
+#include "util.h"
 
 // Static constants and variables
 static constexpr size_t CHUNK_SIZE = 256;
@@ -55,21 +56,9 @@ void setup()
 
 void loop(void)
 {
+    //Image is captured in greyscale. 
     camera_capture_frame(image_buffer);
 
-    //before preprocessing: 
-    // serial_printf("Image before preprocessing: \n");
-    // serial_printf("Width: %d\n", FRAME_W);
-    // serial_printf("Height: %d\n", FRAME_H);
-    // serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
-
-    //Before preprocessing, the images are in greyscale, and with the dimensions of 320x240. 
-    //After preprocessing the images should be greyscale and with the dimensions of 64x64. 
-    preprocess_pipeline(image_buffer, image_resized, FRAME_W, FRAME_H, RESIZE_W, RESIZE_H);
-
-
-
-    
     // // Send preamble
     // usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
 
@@ -88,6 +77,32 @@ void loop(void)
     //     }
     // }
 
+    //before preprocessing: 
+    serial_printf("Image before preprocessing: \n");
+    serial_printf("Width: %d\n", FRAME_W);
+    serial_printf("Height: %d\n", FRAME_H);
+    serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
+    
+
+    uint8_t min_val, max_val;
+    util_find_min_max(image_buffer, sizeof(image_buffer), &min_val, &max_val);
+    serial_printf("Min pixel values: %d\n", min_val);
+    serial_printf("Max pixel values: %d\n", max_val);
+    //Before preprocessing, the images are in greyscale, and with the dimensions of 320x240. 
+    
+    //After preprocessing the images should be greyscale and with the dimensions of 64x64. 
+    preprocess_pipeline(image_buffer, image_resized, FRAME_W, FRAME_H, RESIZE_W, RESIZE_H);
+    
+    
+    //After preprocessing 
+    serial_printf("Image after preprocessing: \n");
+    serial_printf("Width: %d\n", RESIZE_W);
+    serial_printf("Height: %d\n", RESIZE_H);
+    serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
+
+    util_find_min_max(image_resized, sizeof(image_resized), &min_val, &max_val);
+    serial_printf("Min pixel values: %d\n", min_val);
+    serial_printf("Max pixel values: %d\n", max_val);
 
 
     // Wait ~1 second

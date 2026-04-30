@@ -62,21 +62,22 @@ def capture_and_display_loop(port: str, output_path: str):
                         class_index = event.key - pygame.K_0
                         _save_frame(output_path, last_surface, class_index)
 
-            # Capture frame from serial port
-            surface = _capture_frame(serial_port)
-            if surface is None:
-                continue
+            # # Capture frame from serial port
+            # surface = _capture_frame(serial_port)
+            # if surface is None:
+            #     continue
 
-            # Remember last surface for saving
-            last_surface = surface.copy()
+            # # Remember last surface for saving
+            # last_surface = surface.copy()
 
-            # Blit and present the frame
-            screen.blit(surface, (0, 0))
-            pygame.display.flip()
+            # # Blit and present the frame
+            # screen.blit(surface, (0, 0))
+            # pygame.display.flip()
             
-            # esp32_msg = serial_port.readline()
-            # if esp32_msg:
-            #     print("Received:", esp32_msg.decode(errors='ignore').strip())
+            esp32_msg = serial_port.readline()
+            if esp32_msg:
+                print("Received:", esp32_msg.decode(errors='ignore').strip())
+
             
 
             time.sleep(0.001)
@@ -95,7 +96,6 @@ def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
 
     # Read a full frame after the preamble
     frame_rgb565 = serial_port.read(WIDTH * HEIGHT * 1) #2)
-    print(len(frame_rgb565))
     if len(frame_rgb565) != WIDTH * HEIGHT * 1: #2:
         print(f"Incomplete frame received ({len(frame_rgb565)} bytes), skipping...")
         return None
