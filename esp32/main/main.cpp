@@ -12,6 +12,8 @@
 #include "camera.h"
 #include "serial.h"
 #include "preprocess.h"
+#include "util.h"
+#include "inference.h"
 
 // Static constants and variables
 static constexpr size_t CHUNK_SIZE = 256;
@@ -42,6 +44,13 @@ void setup()
     err = usb_serial_jtag_driver_install(&cfg);
     ESP_ERROR_CHECK(err);
 
+    //Initialize inference 
+    if(!inference_init()){
+        serial_printf("Inference initi failed\n");
+        abort();
+    }
+    
+
     // Wait for incoming S on serial port
     printf("Send 'S' to start.\n");
     char c;
@@ -55,7 +64,26 @@ void setup()
 
 void loop(void)
 {
+    //Image is captured in greyscale. 
     camera_capture_frame(image_buffer);
+
+    // // Send preamble
+    usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
+
+    // Send image over USB console
+    // Note that usb_serial_jtag_write_bytes() may fail if writing too many bytes at once, so it's necessary to
+    // send in chunks.
+    size_t frame_size = sizeof(image_buffer);
+    for (size_t offset = 0; offset < frame_size;) {
+        size_t to_write = offset + CHUNK_SIZE < frame_size ? CHUNK_SIZE : frame_size - offset;
+        int written = usb_serial_jtag_write_bytes(image_buffer + offset, to_write, pdMS_TO_TICKS(1000));
+        if (written < to_write) {
+            vTaskDelay(1);
+        }
+        if (written > 0) {
+            offset += written;
+        }
+    }
 
     //before preprocessing: 
     // serial_printf("Image before preprocessing: \n");
@@ -63,31 +91,25 @@ void loop(void)
     // serial_printf("Height: %d\n", FRAME_H);
     // serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
 
+    // uint8_t min_val, max_val;
+    // util_find_min_max(image_buffer, sizeof(image_buffer), &min_val, &max_val);
+    // serial_printf("Min pixel values: %d\n", min_val);
+    // serial_printf("Max pixel values: %d\n", max_val);
     //Before preprocessing, the images are in greyscale, and with the dimensions of 320x240. 
+    
     //After preprocessing the images should be greyscale and with the dimensions of 64x64. 
     preprocess_pipeline(image_buffer, image_resized, FRAME_W, FRAME_H, RESIZE_W, RESIZE_H);
-
-
-
     
-    // // Send preamble
-    // usb_serial_jtag_write_bytes(FRAME_PREAMBLE, strlen(FRAME_PREAMBLE), pdMS_TO_TICKS(1000));
+    
+    //After preprocessing 
+    // serial_printf("Image after preprocessing: \n");
+    // serial_printf("Width: %d\n", RESIZE_W);
+    // serial_printf("Height: %d\n", RESIZE_H);
+    // serial_printf("Number of bytes to hold the pixel values (single byte = grayscale): %d\n", FRAME_C);
 
-    // // Send image over USB console
-    // // Note that usb_serial_jtag_write_bytes() may fail if writing too many bytes at once, so it's necessary to
-    // // send in chunks.
-    // size_t frame_size = sizeof(image_buffer);
-    // for (size_t offset = 0; offset < frame_size;) {
-    //     size_t to_write = offset + CHUNK_SIZE < frame_size ? CHUNK_SIZE : frame_size - offset;
-    //     int written = usb_serial_jtag_write_bytes(image_buffer + offset, to_write, pdMS_TO_TICKS(1000));
-    //     if (written < to_write) {
-    //         vTaskDelay(1);
-    //     }
-    //     if (written > 0) {
-    //         offset += written;
-    //     }
-    // }
-
+    // util_find_min_max(image_resized, sizeof(image_resized), &min_val, &max_val);
+    // serial_printf("Min pixel values: %d\n", min_val);
+    // serial_printf("Max pixel values: %d\n", max_val);
 
 
     // Wait ~1 second

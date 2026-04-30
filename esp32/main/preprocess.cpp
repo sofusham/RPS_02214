@@ -52,4 +52,5 @@ void preprocess_pipeline(const uint8_t* input, uint8_t* output,
     preprocess_center_crop(input, temp_buffer, in_w, in_h);
     // Step 2: Resize
     preprocess_resize_nearest(temp_buffer, output, crop_size, crop_size, out_w, out_h);
+    // Since the model is quantized it will expect uint8_t. No further steps needed. 
 }

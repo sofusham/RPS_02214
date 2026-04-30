@@ -1,0 +1,3 @@
+
+
+bool inference_init();
