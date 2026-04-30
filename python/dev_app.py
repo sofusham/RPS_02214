@@ -74,10 +74,9 @@ def capture_and_display_loop(port: str, output_path: str):
             screen.blit(surface, (0, 0))
             pygame.display.flip()
             
-            esp32_msg = serial_port.readline()
-            if esp32_msg:
-                print("Received:", esp32_msg.decode(errors='ignore').strip())
-
+            # esp32_msg = serial_port.readline()
+            # if esp32_msg:
+            #     print("Received:", esp32_msg.decode(errors='ignore').strip())
             
 
             time.sleep(0.001)
@@ -96,6 +95,7 @@ def _capture_frame(serial_port: serial.Serial) -> pygame.Surface | None:
 
     # Read a full frame after the preamble
     frame_rgb565 = serial_port.read(WIDTH * HEIGHT * 1) #2)
+    print(len(frame_rgb565))
     if len(frame_rgb565) != WIDTH * HEIGHT * 1: #2:
         print(f"Incomplete frame received ({len(frame_rgb565)} bytes), skipping...")
         return None

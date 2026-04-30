@@ -569,16 +569,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-nn/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-tflite-micro/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp_jpeg/cmake_install.cmake")
 endif()
 
