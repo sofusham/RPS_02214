@@ -34,20 +34,37 @@ bool inference_init(){
     }
 
         // Create an interpreter
-    static tflite::MicroMutableOpResolver<9> micro_op_resolver;
-    // Conv1D
-    micro_op_resolver.AddReshape();
+    static tflite::MicroMutableOpResolver<10> micro_op_resolver;
+    
+    // //Original model. 
+    // // Conv1D
+    // micro_op_resolver.AddReshape();
+    // micro_op_resolver.AddConv2D();
+    // // MaxPool1D
+    // micro_op_resolver.AddMaxPool2D();
+    // // Flatten
+    // micro_op_resolver.AddShape();
+    // micro_op_resolver.AddExpandDims();
+    // micro_op_resolver.AddStridedSlice();
+    // micro_op_resolver.AddPack();
+    // // Dense with sigmoid activation
+    // micro_op_resolver.AddFullyConnected();
+    // micro_op_resolver.AddSoftmax();
+
+    //CCN model attempt 
     micro_op_resolver.AddConv2D();
-    // MaxPool1D
-    micro_op_resolver.AddMaxPool2D();
-    // Flatten
-    micro_op_resolver.AddShape();
-    micro_op_resolver.AddExpandDims();
-    micro_op_resolver.AddStridedSlice();
-    micro_op_resolver.AddPack();
-    // Dense with sigmoid activation
+    micro_op_resolver.AddDepthwiseConv2D();
+    micro_op_resolver.AddAveragePool2D();
     micro_op_resolver.AddFullyConnected();
+    micro_op_resolver.AddReshape();
     micro_op_resolver.AddSoftmax();
+    micro_op_resolver.AddAdd();
+    micro_op_resolver.AddMul();
+    micro_op_resolver.AddRelu();
+
+    // If your TFLM build supports it:
+    micro_op_resolver.AddLeakyRelu();
+
     static tflite::MicroInterpreter static_interpreter(model, micro_op_resolver, tensor_arena, TENSOR_ARENA_SIZE);
     interpreter = &static_interpreter;
 
