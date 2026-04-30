@@ -9,6 +9,7 @@ import torchvision
 import litert_torch
 import os
 
+# Function from https://github.com/gustaf-hammarberg/DTU-02214
 def write_model_c_file(path: str, tflite_model):
     # Ensure that the folder exists
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -22,6 +23,7 @@ def write_model_c_file(path: str, tflite_model):
                 c_file.write("\n")
         c_file.write("\n};\n")
 
+# Function from https://github.com/gustaf-hammarberg/DTU-02214
 def write_model_h_file(path: str, defines: dict, declarations: list[str]):
     # Ensure that the folder exists
     os.makedirs(os.path.dirname(path), exist_ok=True)
