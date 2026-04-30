@@ -62,17 +62,17 @@ def capture_and_display_loop(port: str, output_path: str):
                         class_index = event.key - pygame.K_0
                         _save_frame(output_path, last_surface, class_index)
 
-            # # Capture frame from serial port
-            # surface = _capture_frame(serial_port)
-            # if surface is None:
-            #     continue
+            # Capture frame from serial port
+            surface = _capture_frame(serial_port)
+            if surface is None:
+                continue
 
-            # # Remember last surface for saving
-            # last_surface = surface.copy()
+            # Remember last surface for saving
+            last_surface = surface.copy()
 
-            # # Blit and present the frame
-            # screen.blit(surface, (0, 0))
-            # pygame.display.flip()
+            # Blit and present the frame
+            screen.blit(surface, (0, 0))
+            pygame.display.flip()
             
             esp32_msg = serial_port.readline()
             if esp32_msg:

@@ -1,2 +1,5 @@
-idf_component_register(SRCS "main.cpp" "camera.cpp" "serial.cpp" "preprocess.cpp" "util.cpp"
-                    INCLUDE_DIRS ".")
+idf_component_register(SRCS "main.cpp" "camera.cpp" "serial.cpp" "preprocess.cpp" "util.cpp" "inference.cpp" "model.c"
+                    INCLUDE_DIRS "."
+                    REQUIRES espressif__esp-tflite-micro nvs_flash)
+
+

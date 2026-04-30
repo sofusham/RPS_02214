@@ -161,8 +161,12 @@ C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/touch_element/libtouch_el
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/usb/libusb.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/json/libjson.a
+C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-nn/libespressif__esp-nn.a
+C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-tflite-micro/libespressif__esp-tflite-micro.a
+C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-nn/libespressif__esp-nn.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp_jpeg/libespressif__esp_jpeg.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp32-camera/libespressif__esp32-camera.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp_jpeg/libespressif__esp_jpeg.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/main/libmain.a
+C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp-tflite-micro/libespressif__esp-tflite-micro.a
 C:/Users/miesi/02214_lab/RPS_02214/esp32/build/esp-idf/espressif__esp32-camera/libespressif__esp32-camera.a
