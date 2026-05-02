@@ -1,0 +1,63 @@
+Command: C:\Users\miesi\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Users\miesi\esp\esp-idf\tools/idf_monitor.py -p COM12 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\miesi\02214_lab\RPS_02214\esp32\build\camera.elf C:\Users\miesi\02214_lab\RPS_02214\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Users\miesi\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Users\miesi\esp\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM12 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM12 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40048839: [0;33muart_tx_one_char_uart[0m[0m in [0;32mROM[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4037b3f9: [0;33mpanic_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m477[0m
+[0m--- 0x4037b3c1: [0;33mesp_system_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4038217d: [0;33mabort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4200bd2b: [0;33mapp_main[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m126[0m
+[0m--- 0x420477d0: [0;33mmain_task[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x4037c0d5: [0;33mvPortTaskWrapper[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x4037b599: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4037b3f9: [0;33mpanic_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m477[0m
+[0m--- 0x4037b3c1: [0;33mesp_system_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4038217d: [0;33mabort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4200bd2b: [0;33mapp_main[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m126[0m
+[0m--- 0x420477d0: [0;33mmain_task[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x4037c0d5: [0;33mvPortTaskWrapper[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x4037b599: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4037b3f9: [0;33mpanic_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m477[0m
+[0m--- 0x4037b3c1: [0;33mesp_system_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4038217d: [0;33mabort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4200bd2b: [0;33mapp_main[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m126[0m
+[0m--- 0x420477d0: [0;33mmain_task[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x4037c0d5: [0;33mvPortTaskWrapper[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x4037b599: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4037b3f9: [0;33mpanic_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m477[0m
+[0m--- 0x4037b3c1: [0;33mesp_system_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4038217d: [0;33mabort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4200bd2b: [0;33mapp_main[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m126[0m
+[0m--- 0x420477d0: [0;33mmain_task[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x4037c0d5: [0;33mvPortTaskWrapper[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x4037b599: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4037b3f9: [0;33mpanic_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m477[0m
+[0m--- 0x4037b3c1: [0;33mesp_system_abort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4038217d: [0;33mabort[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x4200bcd7: [0;33msetup()[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m51[0m
+[0m--- 0x4200bd2b: [0;33mapp_main[0m[0m at [0;32mC:/Users/miesi/02214_lab/RPS_02214/esp32/main/main.cpp[0m[0m:[1;31m126[0m
+[0m--- 0x420477d0: [0;33mmain_task[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x4037c0d5: [0;33mvPortTaskWrapper[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x4037b599: [0;33mesp_restart_noos[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8924: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/Users/miesi/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
