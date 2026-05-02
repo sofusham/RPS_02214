@@ -140,7 +140,7 @@ void loop(void)
         // vTaskDelay(pdMS_TO_TICKS(5000));
 
         // serial_printf("Inference successful. Prediction: \n");
-        serial_printf("Rock: %f\t Paper: %f\t Scissors: %f\n", prediction[0], prediction[1], prediction[2]);
+        serial_printf("Paper: %f\t Rock: %f\t Scissors: %f\n", prediction[0], prediction[1], prediction[2]);
 
         // for(int i = 0; i < NUMBER_OF_CLASSES; ++i){
         //     serial_printf("Class %d: %f\n", i, prediction[i]);
