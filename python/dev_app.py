@@ -58,9 +58,9 @@ def capture_and_display_loop(port: str, output_path: str):
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_q, pygame.K_ESCAPE):
                         running = False
-                    elif pygame.K_0 <= event.key <= pygame.K_9 and last_surface is not None:
-                        class_index = event.key - pygame.K_0
-                        _save_frame(output_path, last_surface, class_index)
+                    # elif pygame.K_0 <= event.key <= pygame.K_9 and last_surface is not None:
+                    #     class_index = event.key - pygame.K_0
+                    #     _save_frame(output_path, last_surface, class_index)
 
             # Capture frame from serial port
             surface = _capture_frame(serial_port)
