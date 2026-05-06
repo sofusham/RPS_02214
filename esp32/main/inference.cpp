@@ -13,6 +13,7 @@
 #include "model.h"
 #include "serial.h"
 #include "esp_log.h"
+#include "esp_heap_caps.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -50,7 +51,7 @@ static void softmax(float* input, int length) {
 
 
 bool inference_allocating_memory(){
-    tensor_arena = (uint8_t*)malloc(TENSOR_ARENA_SIZE);
+    tensor_arena = (uint8_t*)heap_caps_malloc(TENSOR_ARENA_SIZE, MALLOC_CAP_SPIRAM);   
     if (tensor_arena == nullptr) {
         serial_printf("Failed to allocate tensor arena in PSRAM!\n");
         return false;
