@@ -1,6 +1,6 @@
 """
 Reuqires python 3.13
-And packages from requirements.txt (pip install -r requirements.txt)
+And packages from python/utils/requirements.txt (pip install -r python/utils/requirements.txt)
 Might interfere with previous intalled packages
 """
 
