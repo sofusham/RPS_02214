@@ -1,5 +1,5 @@
 
-
+#define NUMBER_OF_CLASSES 3
 
 bool inference_allocating_memory();
 bool inference_init();
