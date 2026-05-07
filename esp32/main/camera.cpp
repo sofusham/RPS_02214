@@ -1,3 +1,5 @@
+//The entirety of this module was copied from: https://github.com/gustaf-hammarberg/DTU-02214/tree/main/camera
+
 // ESP includes
 #include "esp_camera.h"
 #include "esp_log.h"
@@ -84,7 +86,7 @@ bool camera_init(void)
  * @param image_buffer Pointer to the output buffer (must be at least FRAME_W x FRAME_H x FRAME_C bytes).
  * @return true on success, false on failure.
  */
-bool camera_capture_frame(uint8_t *image_buffer)
+bool    (uint8_t *image_buffer)
 {
     // Capture a frame from the camera
     camera_fb_t *fb = esp_camera_fb_get();
